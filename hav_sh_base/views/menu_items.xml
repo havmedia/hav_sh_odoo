@@ -1,0 +1,33 @@
+<odoo>
+    <menuitem id="menu_havsh_root"
+              name="HAV.sh"
+              web_icon="hav_sh_base,static/description/icon.png"
+    />
+
+    <menuitem id="menu_havsh_odoos"
+              name="Odoos"
+              parent="menu_havsh_root"
+              action="action_havsh_odoos"
+    />
+
+    <menuitem id="menu_havsh_serverss"
+              name="Servers"
+              parent="menu_havsh_root"
+              action="action_havsh_servers"
+    />
+
+    <menuitem id="menu_havsh_provisioning_templates"
+              name="Provisioning Templates"
+              parent="menu_havsh_root"
+              action="action_havsh_provisioning_templates"
+              sequence="20"
+    />
+
+    <menuitem id="menu_havsh_provisioning_jobs"
+              name="Provisioning Jobs"
+              parent="menu_havsh_root"
+              action="action_havsh_provisioning_jobs"
+              sequence="30"
+    />
+
+</odoo>

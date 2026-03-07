@@ -1,0 +1,80 @@
+<odoo>
+    <record id="action_havsh_servers" model="ir.actions.act_window">
+        <field name="name">Servers</field>
+        <field name="res_model">havsh.server</field>
+        <field name="view_mode">list,form</field>
+        <field name="path">havsh-server</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Server entry!
+            </p>
+        </field>
+    </record>
+
+    <record id="view_havsh_server_list" model="ir.ui.view">
+        <field name="name">havsh.server.list</field>
+        <field name="model">havsh.server</field>
+        <field name="arch" type="xml">
+            <list string="Odoos">
+                <field name="name"/>
+                <field name="uuid"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="havsh_server_form" model="ir.ui.view">
+        <field name="name">havsh.server.form</field>
+        <field name="model">havsh.server</field>
+        <field name="arch" type="xml">
+            <form string="Server Instance">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Server Instance Name" required="1" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="uuid" groups="base.group_no_one"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" placeholder="A detailed description of this Server instance..." readonly="1"/>
+                        </page>
+                        <page string="Technical Information" groups="base.group_system">
+                            <group>
+                                <group string="Timestamps">
+                                    <field name="odoo_created_at" readonly="1"/>
+                                    <field name="odoo_updated_at" readonly="1"/>
+                                    <field name="odoo_deleted_at" readonly="1"/>
+                                </group>
+                                <group string="Details">
+                                    <field name="ip" readonly="1"/>
+                                    <field name="port" readonly="1"/>
+                                    <field name="user" readonly="1"/>
+                                    <field name="private_key_id" readonly="1"/>
+                                    <field name="is_reachable" readonly="1"/>
+                                    <field name="is_docker_installed" readonly="1"/>
+                                    <field name="database_postgres" readonly="1"/>
+                                    <field name="database_postgres_running" readonly="1"/>
+                                    <field name="proxy_traefik" readonly="1"/>
+                                    <field name="proxy_traefik_running" readonly="1"/>
+                                    <field name="proxy_traefik_acme_mail" readonly="1"/>
+                                    <field name="monitoring_beszel" readonly="1"/>
+                                    <field name="monitoring_beszel_running" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter open_attachments="True"/>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,10 @@
+<odoo>
+    <record id="action_havsh_provisioning_template_fetch" model="ir.actions.server">
+        <field name="name">Fetch Templates</field>
+        <field name="model_id" ref="model_havsh_provisioning_template"/>
+        <field name="binding_model_id" ref="model_havsh_provisioning_template"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">model.action_sync_templates()</field>
+    </record>
+</odoo>

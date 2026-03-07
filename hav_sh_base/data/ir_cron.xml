@@ -1,0 +1,12 @@
+<odoo>
+    <record id="ir_cron_poll_provisioning_status" model="ir.cron">
+        <field name="name">HAV.sh: Poll Provisioning Status</field>
+        <field name="model_id" ref="model_havsh_provisioning_job"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_poll_provisioning_status()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+</odoo>

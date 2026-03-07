@@ -1,0 +1,22 @@
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="name">res.company.form.havsh</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <page name="general_info" position="after">
+                <page name="hav_sh" string="HAV.sh">
+                    <group>
+                        <group>
+                            <field name="hav_sh_webhook_token" password="True" />
+                            <field name="hav_sh_api_host" />
+                            <field name="hav_sh_api_token" password="True" />
+                            <field name="hav_sh_disable_cert_check" groups="base.group_no_one" />
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

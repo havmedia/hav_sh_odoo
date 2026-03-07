@@ -1,0 +1,113 @@
+<odoo>
+    <record id="action_havsh_odoos" model="ir.actions.act_window">
+        <field name="name">Odoos</field>
+        <field name="res_model">havsh.odoo</field>
+        <field name="view_mode">list,form</field>
+        <field name="path">havsh-odoo</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Odoo entry!
+            </p>
+        </field>
+    </record>
+
+    <record id="view_havsh_odoo_list" model="ir.ui.view">
+        <field name="name">havsh.odoo.list</field>
+        <field name="model">havsh.odoo</field>
+        <field name="arch" type="xml">
+            <list string="Odoos">
+                <field name="name"/>
+                <field name="uuid"/>
+                <field name="is_running"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-warning="state in ['creation_requested', 'deletion_requested']" decoration-success="state == 'running'" decoration-danger="state == 'deleted'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="havsh_odoo_form" model="ir.ui.view">
+        <field name="name">havsh.odoo.form</field>
+        <field name="model">havsh.odoo</field>
+        <field name="arch" type="xml">
+            <form string="Odoo Instance">
+                <header>
+                    <button name="create_hav_sh" string="Create" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_delete" string="Delete" type="object" class="btn-danger" invisible="state != 'running'" confirm="Are you sure you want to delete this Odoo instance from HAV.sh? This action cannot be undone."/>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <field name="active" invisible="1" />
+                <field name="first_hostname" invisible="1" />
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_hostname" type="object" class="oe_stat_button" icon="fa-external-link" invisible="not first_hostname">
+                            <field name="hostname_count" widget="statinfo" string="Hostnames"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Odoo Instance Name" required="1" readonly="state != 'draft'"/>
+                        </h1>
+                        <label for="type" class="oe_edit_only"/>
+                        <h2>
+                            <field name="type" readonly="state != 'draft'"/>
+                        </h2>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="slug"/>
+                            <field name="server_id" readonly="state != 'draft'"/>
+                            <field name="uuid" groups="base.group_no_one"/>
+                            <field name="external_id" groups="base.group_no_one"/>
+                            <field name="version" readonly="state != 'draft'"/>
+                            <field name="admin_user" readonly="state != 'draft'"/>
+                            <field name="is_running" widget="toggle"/>
+                        </group>
+                        <group>
+                            <!-- Related Resource Information -->
+                            <field name="res_model" invisible="1"/>
+                            <field name="res_id" />
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" placeholder="A detailed description of this Odoo instance..." readonly="state != 'draft'"/>
+                        </page>
+                        <page string="Technical Information" groups="base.group_system">
+                            <group>
+                                <group string="Timestamps">
+                                    <field name="odoo_created_at" readonly="1"/>
+                                    <field name="odoo_updated_at" readonly="1"/>
+                                    <field name="odoo_deleted_at" readonly="1"/>
+                                </group>
+                                <group>
+                                    <!-- Add any other technical fields here if they were added later -->
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Initial Modules">
+                            <group>
+                                <field name="initial_module_ids" nolabel="1" readonly="state != 'draft'">
+                                    <list editable="bottom">
+                                        <field name="name"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Hostnames">
+                            <field name="hostname_ids" nolabel="1" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <button name="action_open_hostname" type="object" icon="fa-external-link" title="Open"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter open_attachments="True"/>
+            </form>
+        </field>
+    </record>
+</odoo>

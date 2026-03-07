@@ -1,0 +1,75 @@
+<odoo>
+    <record id="action_havsh_provisioning_jobs" model="ir.actions.act_window">
+        <field name="name">Provisioning Jobs</field>
+        <field name="res_model">havsh.provisioning.job</field>
+        <field name="view_mode">list,form</field>
+        <field name="path">havsh-provisioning-jobs</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No provisioning jobs yet.
+            </p>
+        </field>
+    </record>
+
+    <record id="view_havsh_provisioning_job_list" model="ir.ui.view">
+        <field name="name">havsh.provisioning.job.list</field>
+        <field name="model">havsh.provisioning.job</field>
+        <field name="arch" type="xml">
+            <list string="Provisioning Jobs" create="0">
+                <field name="name"/>
+                <field name="provisioning_template_id"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'pending'"
+                       decoration-warning="state in ['ordering_server', 'installing_docker', 'configuring_database', 'configuring_proxy', 'configuring_monitoring', 'creating_odoo']"
+                       decoration-success="state == 'completed'"
+                       decoration-danger="state == 'failed'"/>
+                <field name="havsh_odoo_id"/>
+                <field name="create_date"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_havsh_provisioning_job_form" model="ir.ui.view">
+        <field name="name">havsh.provisioning.job.form</field>
+        <field name="model">havsh.provisioning.job</field>
+        <field name="arch" type="xml">
+            <form string="Provisioning Job" create="0">
+                <header>
+                    <button name="action_poll_status" string="Refresh Status" type="object"
+                            class="oe_highlight"
+                            invisible="state in ['completed', 'failed']"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="pending,ordering_server,installing_docker,configuring_database,configuring_proxy,configuring_monitoring,creating_odoo,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Provisioning">
+                            <field name="provisioning_template_id"/>
+                            <field name="havsh_odoo_id"/>
+                            <field name="started_at"/>
+                            <field name="completed_at"/>
+                        </group>
+                        <group string="Technical" groups="base.group_no_one">
+                            <field name="external_id"/>
+                            <field name="uuid"/>
+                            <field name="server_external_id"/>
+                            <field name="service_odoo_external_id"/>
+                            <field name="res_model"/>
+                            <field name="res_id"/>
+                        </group>
+                    </group>
+                    <group invisible="not last_error">
+                        <field name="last_error"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>

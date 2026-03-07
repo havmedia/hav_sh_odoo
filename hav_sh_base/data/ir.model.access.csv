@@ -1,0 +1,7 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_havsh_odoo,access_havsh_odoo,model_havsh_odoo,base.group_user,1,1,1,0
+access_havsh_server,access_havsh_server,model_havsh_server,base.group_user,1,0,0,0
+access_havsh_odoo_module,access_havsh_odoo_module,model_havsh_odoo_module,base.group_user,1,1,1,1
+access_havsh_odoo_hostname,access_havsh_odoo_hostname,model_havsh_odoo_hostname,base.group_user,1,1,1,1
+access_havsh_provisioning_template,access_havsh_provisioning_template,model_havsh_provisioning_template,base.group_user,1,1,1,0
+access_havsh_provisioning_job,access_havsh_provisioning_job,model_havsh_provisioning_job,base.group_user,1,1,1,0
