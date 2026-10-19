@@ -70,5 +70,5 @@ class TestCrmLead(TransactionCase):
         self.assertEqual(ctx['default_res_model'], 'crm.lead')
         self.assertEqual(ctx['default_res_id'], self.lead.id)
         self.assertEqual(ctx['default_type'], 'demo')
-        self.assertEqual(ctx['default_version'], '19.0')
+        self.assertEqual(ctx['default_version'], '20.0')
         self.assertIn(str(self.lead.id), ctx['description'])

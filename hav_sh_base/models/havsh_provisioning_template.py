@@ -21,7 +21,7 @@ class HavShProvisioningTemplate(models.Model):
     description = fields.Text(string='Description')
     odoo_version = fields.Selection(
         string='Odoo Version',
-        selection=[('18.0', '18.0'), ('19.0', '19.0')],
+        selection=[('18.0', '18.0'), ('19.0', '19.0'), ('20.0', '20.0')],
     )
     odoo_type = fields.Selection(
         string='Odoo Type',

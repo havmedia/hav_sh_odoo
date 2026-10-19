@@ -188,6 +188,22 @@ class TestHavShOdoo(HavShBaseCase):
         self.assertEqual(instance.state, 'running')
         self.assertEqual(instance.uuid, 'api-created-uuid')
 
+    def test_create_hav_sh_version_20(self):
+        instance = self.env['havsh.odoo'].create({
+            'name': 'New Draft 20',
+            'version': '20.0',
+            'type': 'demo',
+            'server_id': self.server.id,
+        })
+        api_response = {
+            'data': self._make_webhook_odoo_data(uuid='api-created-uuid-20'),
+        }
+        with patch.object(
+            type(self.env.company), 'call_hav_sh', return_value=api_response,
+        ) as mock_call:
+            instance.create_hav_sh()
+            self.assertEqual(mock_call.call_args.kwargs['payload']['version'], '20.0')
+
     def test_create_hav_sh_api_error(self):
         instance = self.env['havsh.odoo'].create({
             'name': 'Will Fail',

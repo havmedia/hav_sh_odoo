@@ -23,7 +23,7 @@ class CrmLead(models.Model):
             'default_res_model': self._name,
             'default_res_id': self.id,
             'default_type': 'demo',
-            'default_version': '19.0',
+            'default_version': '20.0',
             'description': f'This is a demo system created in Odoo for the deal id {self.id}',
         }
         return action
