@@ -41,7 +41,7 @@ class HavShOdoo(models.Model):
     version = fields.Selection(
         string='Version',
         required=True,
-        selection=[('18.0', '18.0'), ('19.0', '19.0')]
+        selection=[('18.0', '18.0'), ('19.0', '19.0'), ('20.0', '20.0')]
     )
     admin_user = fields.Char(string='Admin User')
     initial_module_ids = fields.One2many('havsh.odoo.module', 'odoo_id', string='Initial Modules')
